@@ -1,0 +1,26 @@
+development:
+  clients:
+    default:
+      database: sms_api_development
+      hosts:
+        - localhost:27017
+      options:
+        server_selection_timeout: 5
+
+test:
+  clients:
+    default:
+      database: sms_api_test
+      hosts:
+        - localhost:27017
+      options:
+        server_selection_timeout: 5
+
+production:
+  clients:
+    default:
+      database: sms_api_production
+      hosts:
+        - localhost:27017
+      options:
+        server_selection_timeout: 5
