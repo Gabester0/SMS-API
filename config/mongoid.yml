@@ -1,26 +1,21 @@
 development:
   clients:
     default:
-      database: sms_api_development
-      hosts:
-        - localhost:27017
+      uri: <%= ENV["MONGODB_URI"] || "mongodb://localhost:27017/sms_api_development" %>
       options:
         server_selection_timeout: 5
 
 test:
   clients:
     default:
-      database: sms_api_test
-      hosts:
-        - localhost:27017
+      uri: <%= ENV["MONGODB_URI"] || "mongodb://localhost:27017/sms_api_test" %>
       options:
         server_selection_timeout: 5
+        retry_writes: false
 
 production:
   clients:
     default:
-      database: sms_api_production
-      hosts:
-        - localhost:27017
+      uri: <%= ENV["MONGODB_URI"] || "mongodb://localhost:27017/sms_api_production" %>
       options:
         server_selection_timeout: 5

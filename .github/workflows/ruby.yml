@@ -1,0 +1,44 @@
+name: Ruby
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo:7
+        ports:
+          - 27017:27017
+
+    env:
+      RAILS_ENV: test
+      MONGODB_URI: mongodb://localhost:27017/sms_api_test
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4.5"
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Set up test database
+        run: |
+          sleep 1 # Give MongoDB a moment to fully start
+          bin/rails db:test:prepare
+
+      - name: Run tests
+        run: bin/rails test
