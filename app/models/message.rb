@@ -7,6 +7,7 @@ class Message
   field :content, type: String
   field :status, type: String, default: 'queued'
   #'queued', 'sending', 'sent', 'failed', 'delivered', 'undelivered', 'receiving', 'received'
+  field :twilio_sid, type: String
 
   belongs_to :user
 
