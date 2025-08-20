@@ -1,15 +1,32 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
-require "rails/test_help"
+require "minitest/autorun"
+require 'devise'
 
-module ActiveSupport
-  class TestCase
-    # Run tests in parallel with specified workers
-    parallelize(workers: :number_of_processors)
+class MongoidTestCase < Minitest::Test
+  def setup
+    # Clean the database before each test
+    Mongoid.default_client.collections.each do |collection|
+      collection.delete_many unless collection.name.include?('system')
+    end
+  end
 
-    # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-    fixtures :all
+  def teardown
+    # Clean up after each test
+    Mongoid.default_client.collections.each do |collection|
+      collection.delete_many unless collection.name.include?('system')
+    end
+  end
 
-    # Add more helper methods to be used by all tests here...
+  # Add assertion methods from ActiveSupport::TestCase
+  def assert_includes(collection, obj, msg = nil)
+    msg = message(msg) { "Expected #{collection.inspect} to include #{obj.inspect}" }
+    assert_respond_to collection, :include?
+    assert collection.include?(obj), msg
+  end
+
+  def refute(test, msg = nil)
+    msg = message(msg) { "Expected #{test.inspect} to be false/nil" }
+    assert !test, msg
   end
 end
