@@ -16,6 +16,9 @@ class User
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
 
+  ## Relationships
+  has_many :messages
+
   ## Validations
   validates :email, presence: true, uniqueness: true
 end
