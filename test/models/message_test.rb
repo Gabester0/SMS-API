@@ -16,7 +16,7 @@ class MessageTest < MongoidTestCase
   end
 
   def test_valid_with_valid_attributes
-    assert @message.valid?
+    assert @message.valid?, "Message should be valid with valid attributes: #{@message.errors.full_messages.join(', ')}"
   end
 
   def test_require_to_phone_number
