@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gem 'twilio-ruby', '~> 6.0'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.2", ">= 8.0.2.1"
 # MongoDB ODM
