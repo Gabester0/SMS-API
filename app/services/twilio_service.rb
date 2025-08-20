@@ -12,10 +12,14 @@ class TwilioService
     Rails.logger.info "To: #{message.to_phone_number}"
     Rails.logger.info "Content length: #{message.content.length} characters"
     
+    callback_url = "https://#{ENV['APP_HOST']}/twilio/status_callback"
+    Rails.logger.info "Callback URL: #{callback_url}"
+    
     response = @client.messages.create(
       from: message.from_phone_number || Rails.application.config.x.twilio[:phone_number],
       to: message.to_phone_number,
-      body: message.content
+      body: message.content,
+      status_callback: callback_url
     )
     
     Rails.logger.info "Message SID: #{response.sid}"
