@@ -1,13 +1,15 @@
-class MessageSerializer < ActiveModel::Serializer
-  attributes :id, :to_phone_number, :content, :status, :created_at
+class MessageSerializer
+  include JSONAPI::Serializer
+  
+  attributes :to_phone_number, :content, :status
+
+  attribute :id do |message|
+    message._id.to_s
+  end
+
+  attribute :created_at do |message|
+    message.created_at.iso8601
+  end
 
   belongs_to :user
-
-  def id
-    object._id.to_s
-  end
-
-  def created_at
-    object.created_at.iso8601
-  end
 end
