@@ -7,6 +7,16 @@ class TwilioWebhooksController < ActionController::API
     if message
       message.update(status: params[:MessageStatus])
       Rails.logger.info "Message #{message.twilio_sid} status updated to: #{params[:MessageStatus]}"
+      
+      # Broadcast the status update to the message owner
+      ActionCable.server.broadcast(
+        "message_status_#{message.user_id}",
+        { 
+          message_id: message.id.to_s,
+          status: message.status,
+          twilio_sid: message.twilio_sid
+        }
+      )
     else
       Rails.logger.error "Message not found for SID: #{params[:MessageSid]}"
     end
