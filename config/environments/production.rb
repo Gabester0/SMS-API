@@ -68,4 +68,14 @@ Rails.application.configure do
     'https://sms-messenger.netlify.app',
     /https:\/\/sms-messenger\.netlify\.app.*/
   ]
+
+  # Configure Redis for Action Cable
+  if ENV["REDIS_URL"].present?
+    config.cache_store = :redis_cache_store, { url: ENV["REDIS_URL"],
+      ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE },
+      error_handler: -> (method:, returning:, exception:) {
+        Rails.logger.error "Redis error: #{exception.message}"
+      }
+    }
+  end
 end
