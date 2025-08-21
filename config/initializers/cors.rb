@@ -16,7 +16,7 @@
 # end
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-  origins 'http://localhost:4200', 'https://sms-messenger.netlify.app/'
+  origins 'http://localhost:4200', 'https://sms-messenger.netlify.app'
     resource '*',
       headers: :any,
       expose: ['Authorization'],
