@@ -61,4 +61,11 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # Configure Action Cable for production
+  config.action_cable.url = 'wss://sms-api-production-b599.up.railway.app/cable'
+  config.action_cable.allowed_request_origins = [
+    'https://sms-messenger.netlify.app',
+    /https:\/\/sms-messenger\.netlify\.app.*/
+  ]
 end
