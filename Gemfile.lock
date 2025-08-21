@@ -321,7 +321,7 @@ GEM
     thruster (0.1.15-arm64-darwin)
     thruster (0.1.15-x86_64-linux)
     timeout (0.4.3)
-    twilio-ruby (6.12.1)
+    twilio-ruby (7.7.1)
       faraday (>= 0.9, < 3.0)
       jwt (>= 1.5, < 3.0)
       nokogiri (>= 1.6, < 2.0)
@@ -375,7 +375,7 @@ DEPENDENCIES
   redis-objects
   rubocop-rails-omakase
   thruster
-  twilio-ruby (~> 6.0)
+  twilio-ruby (~> 7.7)
   tzinfo-data
 
 BUNDLED WITH
