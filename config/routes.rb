@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   
   # Twilio webhooks
   post 'twilio/status_callback', to: 'twilio_webhooks#status_callback', as: :twilio_status_callback
+  
+  # Action Cable
+  mount ActionCable.server => '/cable'
 end
