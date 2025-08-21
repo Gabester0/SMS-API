@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
+
 module Rails
-  class HealthController < ActionController::Base
+  class HealthController < ActionController::API
     def show
       head :ok
     end
