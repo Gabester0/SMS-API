@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem 'twilio-ruby', '~> 6.0'
+gem 'twilio-ruby', '~> 7.7'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.2", ">= 8.0.2.1"
