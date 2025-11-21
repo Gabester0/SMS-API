@@ -24,7 +24,7 @@ jobs:
       MONGODB_URI: mongodb://localhost:27017/sms_api_test
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
